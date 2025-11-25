@@ -1,13 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="140" height="65" viewBox="0 0 140 65" role="img" aria-label="ETC Vallenas">
-  <defs>
-    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#1565C0"/>
-      <stop offset="100%" stop-color="#0D47A1"/>
-    </linearGradient>
-  </defs>
-  <rect width="140" height="65" rx="8" fill="url(#g)"/>
-  <g fill="#fff" font-family="Inter, 'Plus Jakarta Sans', Arial, sans-serif" font-weight="700">
-    <text x="16" y="40" font-size="26">ETC</text>
-    <text x="69" y="40" font-size="16">VALLENAS</text>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Professional SVG logo: high-contrast, clean typography and thick triangle strokes -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" width="420" height="80" role="img" aria-labelledby="logoTitle">
+  <title id="logoTitle">MAQUIPERU — Maquinarias y Equipos</title>
+
+  <!-- Background band (navy) to match header -->
+  <rect width="100%" height="100%" fill="#0b1b2e" />
+
+  <!-- Left symbol: two triangles (thick, professional) -->
+  <!-- Symbol refined: precise coordinates, consistent stroke and alignment -->
+  <g id="symbol" transform="translate(18,8)">
+    <!-- Small filled triangle (left) - crisp corners -->
+    <polygon id="tri-small" points="0,56 22,6 44,56" fill="#ffffff" stroke="none" />
+
+    <!-- Spacer (invisible) -->
+    <rect x="50" y="0" width="6" height="64" fill="none" />
+
+    <!-- Large outlined triangle (right) - thicker stroke, rounded joins for a professional finish -->
+    <path id="tri-large" d="M62 6 L126 6 L94 56 Z" fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" />
+
+    <!-- Optional subtle inner stroke to add weight without filling -->
+    <path d="M62 6 L126 6 L94 56 Z" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.08" stroke-linejoin="round" stroke-linecap="round" />
   </g>
+
+  <!-- Text block -->
+  <g transform="translate(130,18)">
+    <!-- Main mark: MAQUIPERU (bold, slightly condensed, subtle italic feel via skew) -->
+    <text x="0" y="28" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-weight="900"
+          font-size="34" fill="#ffffff" style="letter-spacing:1.8px; transform:skewX(-8deg);">
+      MAQUIPERU
+    </text>
+
+    <!-- Subtitle: smaller, uppercase -->
+    <text x="0" y="50" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-weight="700"
+          font-size="10.5" fill="#ffffff" style="letter-spacing:0.9px;">
+      MAQUINARIAS Y EQUIPOS DEL PERÚ S.A.
+    </text>
+  </g>
+
 </svg>
