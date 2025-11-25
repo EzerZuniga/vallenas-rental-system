@@ -110,7 +110,17 @@
     </div>
 
     <!-- Navbar naranja exacto como Maquiperu -->
-    <nav class="navbar-orange">
+    <nav class="navbar-orange navbar-expand-lg">
+        <!-- Inline fix: asegurar que el colapso del navbar sea visible en pantallas >= lg -->
+        <style>
+            @media (min-width: 992px) {
+                #mainNav {
+                    display: flex !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                }
+            }
+        </style>
         <div class="container">
             <div class="navbar-content">
                 <!-- Logo para móvil -->
