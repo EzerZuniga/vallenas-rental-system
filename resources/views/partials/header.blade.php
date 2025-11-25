@@ -114,7 +114,11 @@
         <!-- Inline fix: asegurar que el colapso del navbar sea visible en pantallas >= lg -->
         <style>
             @media (min-width: 992px) {
-                #mainNav { display: flex !important; visibility: visible !important; opacity: 1 !important; }
+                #mainNav {
+                    display: flex !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                }
             }
         </style>
         <div class="container">
