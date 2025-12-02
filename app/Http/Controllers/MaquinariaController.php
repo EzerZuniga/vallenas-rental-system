@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Maquinaria;
+use App\Models\Actividad;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -34,12 +35,17 @@ class MaquinariaController extends Controller
         return view('maquinaria.index', compact('maquinaria', 'tipos'));
     }
 
+    public function create()
+    {
+        return view('admin.maquinaria.create');
+    }
+
     public function show($id)
     {
         $maquinaria = Maquinaria::findOrFail($id);
-        
+
         $relacionadas = Maquinaria::where('tipo', $maquinaria->tipo)
-            ->where('_id', '!=', $id)
+            ->where('id', '!=', $id)
             ->where('disponibilidad', 'disponible')
             ->limit(4)
             ->get();
@@ -87,7 +93,15 @@ class MaquinariaController extends Controller
 
         $maquinaria = Maquinaria::create($data);
 
-        return redirect()->route('admin.maquinaria')
+        Actividad::create([
+            'usuario_id' => auth()->id(),
+            'accion' => 'Creó maquinaria: ' . $maquinaria->nombre,
+            'modulo' => 'Maquinaria',
+            'icono' => 'truck-monster',
+            'metadata' => ['maquinaria_id' => $maquinaria->id],
+        ]);
+
+        return redirect()->route('admin.maquinaria.index')
             ->with('success', 'Maquinaria creada exitosamente.');
     }
 
@@ -115,7 +129,7 @@ class MaquinariaController extends Controller
 
         $maquinaria->update($data);
 
-        return redirect()->route('admin.maquinaria')
+        return redirect()->route('admin.maquinaria.index')
             ->with('success', 'Maquinaria actualizada exitosamente.');
     }
 
@@ -131,7 +145,7 @@ class MaquinariaController extends Controller
 
         $maquinaria->delete();
 
-        return redirect()->route('admin.maquinaria')
+        return redirect()->route('admin.maquinaria.index')
             ->with('success', 'Maquinaria eliminada exitosamente.');
     }
 }

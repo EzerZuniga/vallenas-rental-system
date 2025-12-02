@@ -3,92 +3,78 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Carbon\Carbon;
 use App\Models\Proyecto;
-use App\Models\Usuario;
 
 class ProyectosSeeder extends Seeder
 {
     public function run(): void
     {
-        $admin = Usuario::where('rol', 'admin')->first();
-
         $proyectos = [
             [
-                'codigo' => 'PROY-2024-0001',
-                'nombre' => 'Carretera Cusco - Pisac',
-                'tipo' => 'infraestructura',
-                'descripcion' => 'Construcción y asfaltado de 45 km de carretera entre Cusco y Pisac',
-                'cliente' => 'Ministerio de Transportes y Comunicaciones',
-                'ubicacion' => 'Cusco - Pisac, Perú',
-                'coordenadas' => [
-                    'lat' => -13.4219,
-                    'lng' => -71.9680
-                ],
-                'fecha_inicio' => Carbon::now()->subMonths(6),
-                'fecha_estimada_fin' => Carbon::now()->addMonths(6),
-                'estado' => 'en_progreso',
-                'avance_porcentaje' => 65,
-                'presupuesto' => 15000000,
-                'costo_actual' => 9500000,
-                'moneda' => 'PEN',
-                'responsable_id' => optional($admin)->id,
-                'responsable_nombre' => optional($admin)->nombre . ' ' . optional($admin)->apellido,
-                'equipo' => [
-                    ['nombre' => 'Carlos Mendoza', 'cargo' => 'Jefe de Proyecto'],
-                    ['nombre' => 'Ana Torres', 'cargo' => 'Ingeniera Civil'],
-                    ['nombre' => 'Luis Vargas', 'cargo' => 'Supervisor de Obra'],
-                ],
-                'hitos' => [
-                    ['nombre' => 'Movilización', 'fecha' => Carbon::now()->subMonths(6), 'completado' => true],
-                    ['nombre' => 'Movimiento de tierras', 'fecha' => Carbon::now()->subMonths(4), 'completado' => true],
-                    ['nombre' => 'Base y sub-base', 'fecha' => Carbon::now()->subMonths(2), 'completado' => true],
-                    ['nombre' => 'Asfaltado', 'fecha' => Carbon::now()->addMonths(2), 'completado' => false],
-                    ['nombre' => 'Señalización', 'fecha' => Carbon::now()->addMonths(5), 'completado' => false],
-                ],
-            ],
-            [
-                'codigo' => 'PROY-2024-0002',
-                'nombre' => 'Mina Cerro Verde - Expansión',
-                'tipo' => 'mineria',
-                'descripcion' => 'Movimiento de tierras y preparación de plataformas para expansión minera',
-                'cliente' => 'Compañía Minera Cerro Verde',
-                'ubicacion' => 'Arequipa, Perú',
-                'coordenadas' => [
-                    'lat' => -16.4897,
-                    'lng' => -71.6517
-                ],
-                'fecha_inicio' => Carbon::now()->subMonths(3),
-                'fecha_estimada_fin' => Carbon::now()->addMonths(9),
-                'estado' => 'en_progreso',
-                'avance_porcentaje' => 40,
-                'presupuesto' => 8500000,
-                'costo_actual' => 3200000,
-                'moneda' => 'PEN',
-                'responsable_id' => $admin->_id,
-                'responsable_nombre' => $admin->nombre_completo,
-            ],
-            [
-                'codigo' => 'PROY-2023-0015',
-                'nombre' => 'Centro Comercial Plaza Norte',
+                'codigo' => 'PRO-2024-001',
+                'nombre' => 'Construcción Centro Comercial Mall Plaza',
+                'cliente' => 'Constructora ABC SAC',
                 'tipo' => 'construccion',
-                'descripcion' => 'Excavación y movimiento de tierras para construcción de centro comercial',
-                'cliente' => 'Inversiones Inmobiliarias SAC',
-                'ubicacion' => 'Lima, Perú',
-                'coordenadas' => [
-                    'lat' => -12.0464,
-                    'lng' => -77.0428
-                ],
-                'fecha_inicio' => Carbon::now()->subMonths(12),
-                'fecha_estimada_fin' => Carbon::now()->subMonths(2),
-                'fecha_fin' => Carbon::now()->subMonths(2),
+                'descripcion' => 'Construcción de centro comercial de 5 niveles en San Isidro',
+                'ubicacion' => 'San Isidro, Lima',
+                'fecha_inicio' => '2024-01-15',
+                'fecha_estimada_fin' => '2024-12-31',
+                'estado' => 'en_progreso',
+                'presupuesto' => 5500000.00,
+                'progreso' => 65,
+            ],
+            [
+                'codigo' => 'PRO-2024-002',
+                'nombre' => 'Excavación Proyecto Minero Toquepala',
+                'cliente' => 'Minera XYZ S.A.',
+                'tipo' => 'mineria',
+                'descripcion' => 'Trabajos de excavación y movimiento de tierras en zona minera',
+                'ubicacion' => 'Tacna',
+                'fecha_inicio' => '2024-03-01',
+                'fecha_estimada_fin' => '2025-06-30',
+                'estado' => 'en_progreso',
+                'presupuesto' => 8900000.00,
+                'progreso' => 45,
+            ],
+            [
+                'codigo' => 'PRO-2023-015',
+                'nombre' => 'Carretera Interoceánica Tramo 3',
+                'cliente' => 'Gobierno Regional de Cusco',
+                'tipo' => 'infraestructura',
+                'descripcion' => 'Construcción y asfaltado de 25km de carretera',
+                'ubicacion' => 'Cusco',
+                'fecha_inicio' => '2023-06-01',
+                'fecha_estimada_fin' => '2024-05-31',
+                'fecha_fin' => '2024-06-15',
                 'estado' => 'completado',
-                'avance_porcentaje' => 100,
-                'presupuesto' => 2500000,
-                'costo_actual' => 2350000,
-                'moneda' => 'PEN',
-                'responsable_id' => $admin->_id,
-                'responsable_nombre' => $admin->nombre_completo,
+                'presupuesto' => 12000000.00,
+                'progreso' => 100,
+            ],
+            [
+                'codigo' => 'PRO-2024-008',
+                'nombre' => 'Complejo Habitacional Los Jardines',
+                'cliente' => 'Inmobiliaria Horizonte',
+                'tipo' => 'construccion',
+                'descripcion' => 'Construcción de 8 torres residenciales',
+                'ubicacion' => 'Surco, Lima',
+                'fecha_inicio' => '2024-04-15',
+                'fecha_estimada_fin' => '2025-12-31',
+                'estado' => 'en_progreso',
+                'presupuesto' => 15000000.00,
+                'progreso' => 35,
+            ],
+            [
+                'codigo' => 'PRO-2024-011',
+                'nombre' => 'Remodelación Hospital Nacional',
+                'cliente' => 'Ministerio de Salud',
+                'tipo' => 'infraestructura',
+                'descripcion' => 'Remodelación y ampliación de infraestructura hospitalaria',
+                'ubicacion' => 'Arequipa',
+                'fecha_inicio' => '2024-07-01',
+                'fecha_estimada_fin' => '2025-03-31',
+                'estado' => 'en_progreso',
+                'presupuesto' => 6500000.00,
+                'progreso' => 25,
             ],
         ];
 
@@ -96,6 +82,7 @@ class ProyectosSeeder extends Seeder
             Proyecto::create($proyecto);
         }
 
-        $this->command->info('Proyectos creados exitosamente');
+        $this->command->info('✓ Proyectos creados exitosamente');
+        $this->command->info('  ' . count($proyectos) . ' proyectos registrados');
     }
 }

@@ -1,40 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Professional SVG logo: high-contrast, clean typography and thick triangle strokes -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" width="420" height="80" role="img" aria-labelledby="logoTitle">
-  <title id="logoTitle">MAQUIPERU — Maquinarias y Equipos</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 130" role="img" aria-labelledby="title desc">
+  <title id="title">ETC Vallenas - Logotipo</title>
+  <desc id="desc">Logotipo tipográfico: texto en mayúsculas (sin isotipo). Color blanco, fondo transparente.</desc>
 
-  <!-- Background band (navy) to match header -->
-  <rect width="100%" height="100%" fill="#0b1b2e" />
+  <!-- Texto principal centrado verticalmente. Uso de fuente condensada y contorno sutil para mejor legibilidad en fondo oscuro. -->
+  <g transform="translate(18,8)" text-rendering="optimizeLegibility" shape-rendering="geometricPrecision">
+    <style><![CDATA[
+      .brand-text { font-family: 'Bebas Neue', 'Oswald', 'Montserrat', Arial, sans-serif; font-weight:700; fill:#FFFFFF; font-size:126px; letter-spacing:1px; stroke:#051021; stroke-width:0.8; stroke-opacity:0.18 }
+      .brand-sub { font-family: 'Plus Jakarta Sans', 'Inter', Arial, sans-serif; font-weight:800; fill:rgba(255,255,255,0.92); font-size:22px; letter-spacing:1.8px }
+    ]]></style>
 
-  <!-- Left symbol: two triangles (thick, professional) -->
-  <!-- Symbol refined: precise coordinates, consistent stroke and alignment -->
-  <g id="symbol" transform="translate(18,8)">
-    <!-- Small filled triangle (left) - crisp corners -->
-    <polygon id="tri-small" points="0,56 22,6 44,56" fill="#ffffff" stroke="none" />
-
-    <!-- Spacer (invisible) -->
-    <rect x="50" y="0" width="6" height="64" fill="none" />
-
-    <!-- Large outlined triangle (right) - thicker stroke, rounded joins for a professional finish -->
-    <path id="tri-large" d="M62 6 L126 6 L94 56 Z" fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" />
-
-    <!-- Optional subtle inner stroke to add weight without filling -->
-    <path d="M62 6 L126 6 L94 56 Z" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.08" stroke-linejoin="round" stroke-linecap="round" />
+    <text class="brand-text" x="0" y="78">ETC VALLENAS</text>
+    <text class="brand-sub" x="0" y="108">MAQUINARIAS Y EQUIPOS DEL CUSCO S.A.</text>
   </g>
-
-  <!-- Text block -->
-  <g transform="translate(130,18)">
-    <!-- Main mark: MAQUIPERU (bold, slightly condensed, subtle italic feel via skew) -->
-    <text x="0" y="28" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-weight="900"
-          font-size="34" fill="#ffffff" style="letter-spacing:1.8px; transform:skewX(-8deg);">
-      MAQUIPERU
-    </text>
-
-    <!-- Subtitle: smaller, uppercase -->
-    <text x="0" y="50" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-weight="700"
-          font-size="10.5" fill="#ffffff" style="letter-spacing:0.9px;">
-      MAQUINARIAS Y EQUIPOS DEL PERÚ S.A.
-    </text>
-  </g>
-
 </svg>

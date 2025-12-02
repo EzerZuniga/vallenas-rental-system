@@ -6,6 +6,7 @@ use App\Models\Maquinaria;
 use App\Models\Proyecto;
 use App\Models\Servicio;
 use App\Models\Usuario;
+use App\Models\Actividad;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -30,10 +31,31 @@ class AdminController extends Controller
         $mantenimiento_pendiente = Maquinaria::where('proxima_mantenimiento', '<=', now()->addDays(7))
             ->get();
 
+        // Construir array `estadisticas` que la vista espera (nombres compatibles)
+        $estadisticas = [
+            'total_usuarios' => Usuario::count(),
+            'total_maquinaria' => $stats['total_maquinaria'],
+            'proyectos_activos' => $stats['proyectos_activos'],
+            'total_servicios' => $stats['total_servicios'],
+            'maquinaria_disponible' => $stats['maquinaria_disponible'],
+            // maquinaria_en_uso: usar maquinaria_alquilada si aplica
+            'maquinaria_en_uso' => $stats['maquinaria_alquilada'] ?? 0,
+            // maquinaria_mantenimiento: contar mantenimientos pendientes
+            'maquinaria_mantenimiento' => $mantenimiento_pendiente->count(),
+        ];
+
+        // Obtener las últimas actividades registradas en el sistema
+        $actividadReciente = Actividad::with('user')
+            ->orderBy('created_at', 'desc')
+            ->limit(10)
+            ->get();
+
         return view('admin.index', compact(
             'stats',
+            'estadisticas',
             'proyectos_recientes',
-            'mantenimiento_pendiente'
+            'mantenimiento_pendiente',
+            'actividadReciente'
         ));
     }
 

@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Actividad;
 
 class UsuarioController extends Controller
 {
     public function dashboard()
     {
         $usuario = auth()->user();
-        
+
         $stats = [
             'proyectos_asignados' => $usuario->proyectos()->count(),
             'proyectos_activos' => $usuario->proyectos()->where('estado', 'en_progreso')->count(),
@@ -117,10 +118,10 @@ class UsuarioController extends Controller
 
         if ($request->has('buscar') && $request->buscar) {
             $buscar = $request->buscar;
-            $query->where(function($q) use ($buscar) {
+            $query->where(function ($q) use ($buscar) {
                 $q->where('nombre', 'like', "%{$buscar}%")
-                  ->orWhere('apellido', 'like', "%{$buscar}%")
-                  ->orWhere('email', 'like', "%{$buscar}%");
+                    ->orWhere('apellido', 'like', "%{$buscar}%")
+                    ->orWhere('email', 'like', "%{$buscar}%");
             });
         }
 
@@ -137,7 +138,7 @@ class UsuarioController extends Controller
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
             'email' => 'required|email|unique:usuarios,email,' . $id . ',_id',
-            'rol' => 'required|in:cliente,operador,admin,superadmin',
+            'rol' => 'required|in:admin,manager,operator,client',
             'estado' => 'required|in:activo,inactivo,suspendido',
         ]);
 
@@ -146,10 +147,43 @@ class UsuarioController extends Controller
         return back()->with('success', 'Usuario actualizado exitosamente.');
     }
 
+    public function create()
+    {
+        return view('admin.usuarios.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'email' => 'required|email|unique:usuarios,email',
+            'password' => 'required|min:6|confirmed',
+            'rol' => 'required|in:admin,manager,operator,client',
+        ]);
+
+        $data = $request->only(['nombre', 'apellido', 'email', 'rol']);
+        $data['password'] = Hash::make($request->password);
+        $data['estado'] = $request->input('estado', 'activo');
+
+        $usuario = Usuario::create($data);
+
+        // Registrar actividad
+        Actividad::create([
+            'usuario_id' => auth()->id(),
+            'accion' => 'Creó usuario: ' . $usuario->getNombreCompletoAttribute(),
+            'modulo' => 'Usuarios',
+            'icono' => 'user-plus',
+            'metadata' => ['usuario_id' => $usuario->id],
+        ]);
+
+        return redirect()->route('admin.usuarios.index')->with('success', 'Usuario creado exitosamente.');
+    }
+
     public function destroy($id)
     {
         $usuario = Usuario::findOrFail($id);
-        
+
         if ($usuario->_id == auth()->id()) {
             return back()->withErrors(['error' => 'No puedes eliminar tu propia cuenta.']);
         }
