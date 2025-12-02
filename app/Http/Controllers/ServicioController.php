@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Servicio;
+use App\Models\Actividad;
 use Illuminate\Http\Request;
 
 class ServicioController extends Controller
@@ -19,18 +20,23 @@ class ServicioController extends Controller
             $query->where('categoria', $request->categoria);
         }
 
-        $servicios = $query->ordered()->paginate(12);
+        $servicios = $query->orderBy('nombre', 'asc')->paginate(12);
         $tipos = Servicio::distinct('tipo')->pluck('tipo');
 
         return view('servicios.index', compact('servicios', 'tipos'));
     }
 
+    public function create()
+    {
+        return view('admin.servicios.create');
+    }
+
     public function show($id)
     {
         $servicio = Servicio::where('estado', 'activo')->findOrFail($id);
-        
+
         $relacionados = Servicio::where('tipo', $servicio->tipo)
-            ->where('_id', '!=', $id)
+            ->where('id', '!=', $id)
             ->where('estado', 'activo')
             ->limit(3)
             ->get();
@@ -63,7 +69,15 @@ class ServicioController extends Controller
 
         $servicio = Servicio::create($data);
 
-        return redirect()->route('admin.servicios')
+        Actividad::create([
+            'usuario_id' => auth()->id(),
+            'accion' => 'Creó servicio: ' . $servicio->nombre,
+            'modulo' => 'Servicios',
+            'icono' => 'plus-circle',
+            'metadata' => ['servicio_id' => $servicio->id],
+        ]);
+
+        return redirect()->route('admin.servicios.index')
             ->with('success', 'Servicio creado exitosamente.');
     }
 
@@ -78,7 +92,7 @@ class ServicioController extends Controller
 
         $servicio->update($request->all());
 
-        return redirect()->route('admin.servicios')
+        return redirect()->route('admin.servicios.index')
             ->with('success', 'Servicio actualizado exitosamente.');
     }
 
@@ -87,7 +101,7 @@ class ServicioController extends Controller
         $servicio = Servicio::findOrFail($id);
         $servicio->delete();
 
-        return redirect()->route('admin.servicios')
+        return redirect()->route('admin.servicios.index')
             ->with('success', 'Servicio eliminado exitosamente.');
     }
 
@@ -95,7 +109,7 @@ class ServicioController extends Controller
     {
         $servicio = Servicio::findOrFail($id);
         $servicio->increment('popularidad');
-        
+
         return response()->json(['success' => true]);
     }
 }

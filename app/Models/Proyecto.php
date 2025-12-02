@@ -51,9 +51,9 @@ class Proyecto extends Model
     {
         return [
             'coordenadas' => 'array',
-            'fecha_inicio' => 'date',
-            'fecha_fin' => 'date',
-            'fecha_estimada_fin' => 'date',
+            'fecha_inicio' => 'datetime',
+            'fecha_fin' => 'datetime',
+            'fecha_estimada_fin' => 'datetime',
             'presupuesto' => 'decimal:2',
             'costo_actual' => 'decimal:2',
             'equipo' => 'array',

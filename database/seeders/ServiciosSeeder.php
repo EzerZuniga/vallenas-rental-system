@@ -13,115 +13,112 @@ class ServiciosSeeder extends Seeder
             [
                 'codigo' => 'SER-ALQ-0001',
                 'nombre' => 'Alquiler de Maquinaria Pesada',
-                'tipo' => 'alquiler',
-                'categoria' => 'principal',
+                'tipo' => 'alquiler_maquinaria',
+                'categoria' => 'Principal',
                 'descripcion_corta' => 'Alquiler de equipos de construcción y minería con operadores certificados',
-                'descripcion_larga' => 'Ofrecemos una amplia flota de maquinaria pesada para alquiler con operadores altamente capacitados. Nuestros equipos están en óptimas condiciones y cumplen con todos los estándares de seguridad.',
-                'precio_base' => 120,
-                'precio_hora' => 150,
-                'precio_dia' => 1000,
-                'precio_semana' => 6000,
-                'precio_mes' => 22000,
-                'moneda' => 'PEN',
+                'descripcion_completa' => 'Ofrecemos una amplia flota de maquinaria pesada para alquiler con operadores altamente capacitados. Nuestros equipos están en óptimas condiciones y cumplen con todos los estándares de seguridad.',
+                'precio_base' => 120.00,
+                'precio_por_hora' => 150.00,
+                'precio_por_dia' => 1000.00,
+                'precio_por_semana' => 6000.00,
+                'precio_por_mes' => 22000.00,
                 'disponibilidad' => 'disponible',
                 'estado' => 'activo',
-                'destacado' => true,
-                'caracteristicas' => [
+                'caracteristicas' => json_encode([
                     'Operadores certificados',
-                    'Equipos en óptimas condiciones',
-                    'Seguro incluido',
-                    'Soporte técnico 24/7',
-                    'Mantenimiento preventivo',
-                    'Flexibilidad en horarios'
-                ],
-                'beneficios' => [
-                    'Reducción de costos operativos',
-                    'Sin inversión inicial',
                     'Mantenimiento incluido',
-                    'Actualización constante de equipos'
-                ],
-                'requisitos' => [
-                    'RUC o DNI',
-                    'Garantía o carta fianza',
-                    'Contrato firmado',
+                    'Seguro incluido',
+                    'Soporte 24/7'
+                ]),
+                'beneficios' => json_encode([
+                    'Equipos en óptimas condiciones',
+                    'Flexibilidad en períodos de alquiler',
+                    'Asesoría técnica gratuita'
+                ]),
+                'requisitos' => json_encode([
+                    'Documento de identidad',
+                    'Comprobante de domicilio',
+                    'Garantía bancaria o depósito'
+                ]),
+                'tiempo_respuesta_horas' => 24,
+                'zonas_cobertura' => json_encode(['Lima', 'Callao', 'Arequipa', 'Cusco']),
+            ],
+            [
+                'codigo' => 'SER-OPE-0001',
+                'nombre' => 'Servicio de Operadores Certificados',
+                'tipo' => 'operador',
+                'categoria' => 'Personal',
+                'descripcion_corta' => 'Personal capacitado para operación de maquinaria pesada',
+                'descripcion_completa' => 'Contamos con operadores certificados con amplia experiencia en manejo de maquinaria pesada para construcción y minería.',
+                'precio_por_hora' => 45.00,
+                'precio_por_dia' => 350.00,
+                'precio_por_semana' => 2100.00,
+                'precio_por_mes' => 7500.00,
+                'disponibilidad' => 'disponible',
+                'estado' => 'activo',
+                'caracteristicas' => json_encode([
+                    'Certificados vigentes',
+                    'Experiencia comprobada',
                     'Seguro de responsabilidad civil'
-                ],
+                ]),
+                'tiempo_respuesta_horas' => 48,
+                'zonas_cobertura' => json_encode(['Lima', 'Callao']),
             ],
             [
                 'codigo' => 'SER-MAN-0001',
-                'nombre' => 'Mantenimiento y Reparación',
+                'nombre' => 'Mantenimiento Preventivo y Correctivo',
                 'tipo' => 'mantenimiento',
-                'categoria' => 'principal',
-                'descripcion_corta' => 'Servicio técnico especializado para maquinaria pesada',
-                'descripcion_larga' => 'Realizamos mantenimiento preventivo y correctivo de todo tipo de maquinaria pesada. Contamos con técnicos certificados y repuestos originales.',
-                'precio_base' => 80,
-                'precio_hora' => 100,
-                'moneda' => 'PEN',
+                'categoria' => 'Soporte',
+                'descripcion_corta' => 'Servicio de mantenimiento especializado para maquinaria pesada',
+                'descripcion_completa' => 'Realizamos mantenimiento preventivo y correctivo para todo tipo de maquinaria pesada, garantizando su óptimo funcionamiento.',
+                'precio_base' => 200.00,
+                'precio_por_hora' => 80.00,
                 'disponibilidad' => 'disponible',
                 'estado' => 'activo',
-                'destacado' => true,
-                'caracteristicas' => [
+                'caracteristicas' => json_encode([
                     'Técnicos certificados',
                     'Repuestos originales',
-                    'Diagnóstico computarizado',
-                    'Servicio en sitio',
-                    'Garantía en reparaciones',
-                    'Atención 24/7'
-                ],
-                'beneficios' => [
-                    'Mayor vida útil de equipos',
-                    'Reducción de tiempos muertos',
-                    'Ahorro en costos de reparación',
-                    'Historial de mantenimiento digital'
-                ],
-            ],
-            [
-                'codigo' => 'SER-CON-0001',
-                'nombre' => 'Construcción de Obras',
-                'tipo' => 'construccion',
-                'categoria' => 'principal',
-                'descripcion_corta' => 'Ejecución de proyectos de construcción civil y minería',
-                'descripcion_larga' => 'Ejecutamos proyectos de construcción de carreteras, edificaciones, movimiento de tierras y obras civiles. Contamos con personal calificado y equipos modernos.',
-                'precio_base' => null,
-                'moneda' => 'PEN',
-                'disponibilidad' => 'disponible',
-                'estado' => 'activo',
-                'destacado' => true,
-                'caracteristicas' => [
-                    'Personal calificado',
-                    'Equipos propios',
-                    'Gestión de proyectos',
-                    'Control de calidad',
-                    'Cumplimiento de plazos',
-                    'Certificaciones ISO'
-                ],
-                'beneficios' => [
-                    'Experiencia en proyectos complejos',
-                    'Recursos propios',
-                    'Gestión integral',
-                    'Garantía de obra'
-                ],
+                    'Diagnóstico computarizado'
+                ]),
+                'tiempo_respuesta_horas' => 12,
+                'zonas_cobertura' => json_encode(['Lima', 'Callao', 'Ica']),
             ],
             [
                 'codigo' => 'SER-TRA-0001',
                 'nombre' => 'Transporte de Maquinaria',
                 'tipo' => 'transporte',
-                'categoria' => 'complementario',
-                'descripcion_corta' => 'Transporte seguro de maquinaria pesada a nivel nacional',
-                'descripcion_larga' => 'Servicio de transporte especializado para maquinaria pesada con camas bajas y equipos especializados. Cobertura a nivel nacional.',
-                'precio_base' => 200,
-                'moneda' => 'PEN',
+                'categoria' => 'Logística',
+                'descripcion_corta' => 'Servicio de transporte especializado para equipos pesados',
+                'descripcion_completa' => 'Transportamos maquinaria pesada con camas bajas especializadas y todos los permisos necesarios.',
+                'precio_base' => 500.00,
                 'disponibilidad' => 'disponible',
                 'estado' => 'activo',
-                'destacado' => false,
-                'caracteristicas' => [
+                'caracteristicas' => json_encode([
                     'Camas bajas especializadas',
-                    'Permisos y autorizaciones',
-                    'Seguro de carga',
-                    'Personal capacitado',
-                    'Cobertura nacional',
-                    'Rastreo GPS'
-                ],
+                    'Permisos vigentes',
+                    'Seguro de carga'
+                ]),
+                'tiempo_respuesta_horas' => 48,
+                'zonas_cobertura' => json_encode(['Lima', 'Callao', 'Ica', 'Arequipa']),
+            ],
+            [
+                'codigo' => 'SER-CON-0001',
+                'nombre' => 'Consultoría y Asesoramiento',
+                'tipo' => 'consultoria',
+                'categoria' => 'Servicios Profesionales',
+                'descripcion_corta' => 'Asesoría especializada en proyectos de construcción',
+                'descripcion_completa' => 'Brindamos consultoría técnica para optimizar el uso de maquinaria en proyectos de construcción y minería.',
+                'precio_por_hora' => 150.00,
+                'precio_por_dia' => 1000.00,
+                'disponibilidad' => 'limitado',
+                'estado' => 'activo',
+                'caracteristicas' => json_encode([
+                    'Ingenieros especializados',
+                    'Análisis de rentabilidad',
+                    'Optimización de recursos'
+                ]),
+                'tiempo_respuesta_horas' => 72,
+                'zonas_cobertura' => json_encode(['Todo el Perú']),
             ],
         ];
 
@@ -130,5 +127,6 @@ class ServiciosSeeder extends Seeder
         }
 
         $this->command->info('✓ Servicios creados exitosamente');
+        $this->command->info('  ' . count($servicios) . ' servicios registrados');
     }
 }

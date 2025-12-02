@@ -17,13 +17,11 @@ class UsuariosSeeder extends Seeder
                 'email' => 'vallenasfernando43@gmail.com',
                 'telefono' => '+51984123456',
                 'password' => Hash::make('admin123'),
-                'rol' => 'superadmin',
+                'rol' => 'admin',
                 'estado' => 'activo',
                 'empresa' => 'ETC Vallenas',
                 'cargo' => 'Director General',
                 'email_verified_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'nombre' => 'Carlos',
@@ -36,8 +34,6 @@ class UsuariosSeeder extends Seeder
                 'empresa' => 'ETC Vallenas',
                 'cargo' => 'Gerente de Operaciones',
                 'email_verified_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'nombre' => 'Juan',
@@ -45,13 +41,11 @@ class UsuariosSeeder extends Seeder
                 'email' => 'operador@etcvallenas.com',
                 'telefono' => '+51976543210',
                 'password' => Hash::make('operador123'),
-                'rol' => 'operador',
+                'rol' => 'operator',
                 'estado' => 'activo',
                 'empresa' => 'ETC Vallenas',
                 'cargo' => 'Operador de Maquinaria',
                 'email_verified_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'nombre' => 'María',
@@ -59,14 +53,11 @@ class UsuariosSeeder extends Seeder
                 'email' => 'cliente@example.com',
                 'telefono' => '+51965432109',
                 'password' => Hash::make('cliente123'),
-                'rol' => 'cliente',
+                'rol' => 'client',
                 'estado' => 'activo',
                 'empresa' => 'Constructora ABC SAC',
                 'cargo' => 'Jefe de Proyectos',
-                'verificado' => true,
-                'verificado_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'email_verified_at' => now(),
             ],
             [
                 'nombre' => 'Roberto',
@@ -74,14 +65,11 @@ class UsuariosSeeder extends Seeder
                 'email' => 'roberto.silva@mineraxyz.com',
                 'telefono' => '+51974321876',
                 'password' => Hash::make('cliente123'),
-                'rol' => 'cliente',
+                'rol' => 'client',
                 'estado' => 'activo',
                 'empresa' => 'Minera XYZ S.A.',
                 'cargo' => 'Supervisor de Operaciones',
-                'verificado' => true,
-                'verificado_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'email_verified_at' => now(),
             ],
             [
                 'nombre' => 'Ana',
@@ -89,14 +77,11 @@ class UsuariosSeeder extends Seeder
                 'email' => 'ana.rodriguez@constructoraperu.com',
                 'telefono' => '+51983214567',
                 'password' => Hash::make('cliente123'),
-                'rol' => 'cliente',
+                'rol' => 'client',
                 'estado' => 'activo',
                 'empresa' => 'Constructora Perú SAC',
                 'cargo' => 'Directora de Proyectos',
-                'verificado' => true,
-                'verificado_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'email_verified_at' => now(),
             ]
         ];
 
@@ -108,7 +93,7 @@ class UsuariosSeeder extends Seeder
         }
 
         $this->command->info('✓ Usuarios de prueba creados exitosamente');
-        $this->command->info('  Superadmin: vallenasfernando43@gmail.com / admin123');
+        $this->command->info('  Admin: vallenasfernando43@gmail.com / admin123');
         $this->command->info('  Admin: admin@etcvallenas.com / admin123');
         $this->command->info('  Operador: operador@etcvallenas.com / operador123');
         $this->command->info('  Clientes: cliente@example.com / cliente123');

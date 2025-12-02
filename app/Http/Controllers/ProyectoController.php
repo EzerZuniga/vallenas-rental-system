@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Proyecto;
 use App\Models\Maquinaria;
 use App\Models\Usuario;
+use App\Models\Actividad;
 use Illuminate\Http\Request;
 
 class ProyectoController extends Controller
@@ -31,10 +32,17 @@ class ProyectoController extends Controller
         return view('proyectos.index', compact('proyectos', 'tipos'));
     }
 
+    public function create()
+    {
+        $usuarios = Usuario::all();
+        $maquinaria = Maquinaria::all();
+        return view('admin.proyectos.create', compact('usuarios', 'maquinaria'));
+    }
+
     public function show($id)
     {
         $proyecto = Proyecto::with('responsable', 'maquinaria')->findOrFail($id);
-        
+
         $relacionados = Proyecto::where('tipo', $proyecto->tipo)
             ->where('_id', '!=', $id)
             ->limit(3)
@@ -75,7 +83,15 @@ class ProyectoController extends Controller
 
         $proyecto = Proyecto::create($data);
 
-        return redirect()->route('admin.proyectos')
+        Actividad::create([
+            'usuario_id' => auth()->id(),
+            'accion' => 'Creó proyecto: ' . $proyecto->nombre,
+            'modulo' => 'Proyectos',
+            'icono' => 'folder-plus',
+            'metadata' => ['proyecto_id' => $proyecto->id],
+        ]);
+
+        return redirect()->route('admin.proyectos.index')
             ->with('success', 'Proyecto creado exitosamente.');
     }
 
@@ -91,7 +107,7 @@ class ProyectoController extends Controller
 
         $proyecto->update($request->all());
 
-        return redirect()->route('admin.proyectos')
+        return redirect()->route('admin.proyectos.index')
             ->with('success', 'Proyecto actualizado exitosamente.');
     }
 
@@ -100,7 +116,7 @@ class ProyectoController extends Controller
         $proyecto = Proyecto::findOrFail($id);
         $proyecto->delete();
 
-        return redirect()->route('admin.proyectos')
+        return redirect()->route('admin.proyectos.index')
             ->with('success', 'Proyecto eliminado exitosamente.');
     }
 
